@@ -1,13 +1,9 @@
 import axios from 'axios'
 
-const isLocalDev =
-  typeof window !== 'undefined' &&
-  window.location.hostname === 'localhost' &&
-  window.location.port === '5173'
-
-const baseURL =
-  import.meta.env.VITE_API_URL
-  || (isLocalDev ? 'http://localhost:4000/api' : '/api')
+// Enforce correct base URL at runtime to avoid localhost in production
+const isBrowser = typeof window !== 'undefined'
+const isViteDev = isBrowser && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port === '5173'
+const baseURL = isViteDev ? 'http://localhost:4000/api' : '/api'
 
 const api = axios.create({ baseURL })
 
