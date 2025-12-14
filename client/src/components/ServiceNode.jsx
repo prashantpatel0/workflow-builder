@@ -50,8 +50,15 @@ function ServiceNode({ id, data, isConnectable }) {
         <img src={src} alt={label || 'Service'} className="node-icon" width={20} height={20} loading="lazy" decoding="async" draggable={false} style={{opacity: loaded ? 1 : 0, transition:'opacity .15s ease'}} />
         <div className="node-label">{label || 'Service'}</div>
       </div>
-      <Handle type="target" position={Position.Left} isConnectable={isConnectable} />
-      <Handle type="source" position={Position.Right} isConnectable={isConnectable} />
+      {/* Allow connections from all sides (source and target) */}
+      <Handle id="t-top" type="target" position={Position.Top} isConnectable={isConnectable} />
+      <Handle id="s-top" type="source" position={Position.Top} isConnectable={isConnectable} />
+      <Handle id="t-right" type="target" position={Position.Right} isConnectable={isConnectable} />
+      <Handle id="s-right" type="source" position={Position.Right} isConnectable={isConnectable} />
+      <Handle id="t-bottom" type="target" position={Position.Bottom} isConnectable={isConnectable} />
+      <Handle id="s-bottom" type="source" position={Position.Bottom} isConnectable={isConnectable} />
+      <Handle id="t-left" type="target" position={Position.Left} isConnectable={isConnectable} />
+      <Handle id="s-left" type="source" position={Position.Left} isConnectable={isConnectable} />
     </div>
   )
 }
